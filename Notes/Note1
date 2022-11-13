@@ -17,3 +17,27 @@ They are used for preConditions and PostConditions meaning if they are are some 
 repeat in every test then by help of @Before and @After methods we could write it once and repeat them for our entire
 test cases. forExample for every test case we should launch the browser and quite the browser so why we should repeat them
 in every test .
+
+1.what is the usage of @BeforClass and @AfterClass annotations?
+2. how to use testNG and cucumber framework without and IDE?
+
+Note: if we have two test cases as follows that means our precondition and post condition which is launching the browser
+and quiting the browser will execute for two times
+    @Test(priority = 1, enabled = true)
+    @Test(priority = 2, enabled = true)
+
+    Why we should use Assertions instead of If & else in TestNG?
+    because if you use if & else condition on a test case which supposed be failed it will not show failed it will only
+    show failed in the print statement of if & else condition so that is why we use Assertion
+
+     WebElement welcomeAttribute = driver.findElement(By.xpath("//*[@id='welcome']"));
+            if (welcomeAttribute.isDisplayed()) {
+                System.out.println("Test case is valid and passed");
+            } else {
+                System.out.println("Test case invalid and failed");
+
+
+   What is hard assertion?
+   the moment the test fails then it will stop the execution for farther test cases so that is why we call it hard assertion
+   Ex: Assert.assertEquals(actualValue,expectedText,"Values are not matching");
+   The message of the assertion "Values are not matching" will be printed in the console if the test fails if not then it won't.
