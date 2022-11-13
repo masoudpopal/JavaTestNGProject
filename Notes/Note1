@@ -1,0 +1,19 @@
+
+
+TestNG will execute the test files in alphabetic order by default.
+
+What is the difference between @Test    and   @Test() ?
+They will work both the same the only difference if we want to parameterize our Test annotations we should write it
+as Test().
+
+What is @BeforeMethod?
+this method will execute before every test.
+
+What is @AfterMethod?
+this method will execute after every test.
+
+what is the usage of @Before and @After ?  For code Re-Usability
+They are used for preConditions and PostConditions meaning if they are are some conditions that we would like to
+repeat in every test then by help of @Before and @After methods we could write it once and repeat them for our entire
+test cases. forExample for every test case we should launch the browser and quite the browser so why we should repeat them
+in every test .
