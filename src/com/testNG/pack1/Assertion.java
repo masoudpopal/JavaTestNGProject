@@ -1,16 +1,17 @@
-package com.testNG.class1;
+package com.testNG.pack1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest {
+public class Assertion {
     WebDriver driver;
 
     @BeforeMethod
@@ -22,7 +23,7 @@ public class LoginTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test()
+    @Test(priority = 1, enabled = true)
     public void validLogin() {
         WebElement username = driver.findElement(By.id("txtUsername"));
         username.sendKeys("Admin");
@@ -36,15 +37,22 @@ public class LoginTest {
          */
 
         WebElement welcomeAttribute = driver.findElement(By.xpath("//*[@id='welcome']"));
-        if (welcomeAttribute.isDisplayed()) {
-            System.out.println("Test case is valid and passed");
-        } else {
-            System.out.println("Test case invalid and failed");
-        }
+        Assert.assertTrue(welcomeAttribute.isDisplayed());
+        System.out.println("my assertion is passed ");
+
+    }
+    @Test(priority = 2, enabled = true)
+    public void validationOfTitle(){
+        String actualValue="Human Management Syste";
+        String expectedText= driver.getTitle();
+        Assert.assertEquals(actualValue,expectedText,"Values are not matching");
+        System.out.println("I am executing after assertion");
+
+
     }
 
-        @AfterMethod
-        public void tearDown () {
-            driver.quit();
-        }
+    @AfterMethod
+    public void tearDown () {
+        driver.quit();
     }
+}
