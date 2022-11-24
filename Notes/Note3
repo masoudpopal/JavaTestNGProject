@@ -1,0 +1,96 @@
+
+ Assertions:
+To validate the fields of application we need assertion.
+There are two kinds of assertions:
+1. Hard Assertion
+2. Soft Assertion
+
+Hard Assertion:
+when error exists, it stops execution
+
+Sof Assertion:
+ It allows us to execute our complete code and captures all the errors at the end it gives us a consolidated output.
+We use assertAll() method to get consolidated/collective result.
+
+DependsOnAttribute:
+It executes first the test on which our current test is depending
+
+testng.xml configuration file:
+It allows to execute all of our test cases according to our requirement
+In this file, we can include/exclude methods, classes, and packages during execution
+
+Groupings:
+Groups allow us to execute specific test cases that belong to particular categories like smoke, regression ans so on
+
+Emailable Report:
+testng allows us to generate a report of execution having the extension of .html that explains our details of execution
+
+Note: DataProvider is only good for small data not for large data
+DataProvider works with the 2D arrays that means the length of the arrays should be fixed
+in the following example we have 3 users want to use the application
+Ideally we use Excel sheet instead of DataProvider
+
+ @DataProvider
+    public Object[][] loginData(){
+        Object[][] data=new Object[3][2]; // 3 rows and 2 columns
+        data[0][0]="Admin";
+        data[0][1]="Hum@nhrm123";
+        data[1][0]="Michael12345";
+        data[1][1]="Hum@nhrm123";
+        data[2][0]="Admin";
+        data[2][1]="Hum@nhrm123";
+
+         @Test(dataProvider= "loginData")
+            public void validLogin(String username, String password){
+                driver.findElement(By.id("txtUsername")).sendKeys(username);
+                driver.findElement(By.id("txtPassword")).sendKeys(password);
+               driver.findElement(By.id("btnLogin")).click();
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+
+ What we have inside the interface? methods without body
+ Listeners:
+ To track/listen every minor details of our execution, we need listener.
+ listener is defined as an interface that modifies the default testNG behaviour .
+
+ What is Parallel Testing?
+ We do parallel testing mostly in selenium whenever we want to do some tests with the different browsers at the same time.
+ if we have three tests and we want to save time and execute them on the same time meaning at the same time 3 browsers will open
+ and execution will start so this process called parallel testing.
+
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+ <suite name="All Test Suite">
+
+     <listeners>
+         <listener class-name="com.testNG.pack3.Listeners"/>
+
+
+     </listeners>
+     <test verbose="2" preserve-order="true" name="Parallel Test" parallel="methods" thread-count="3">
+         <classes>
+             <class name="com.testNG.pack3.ParallelTestTester">
+             </class>
+             <class name="com.testNG.pack2.SoftAssertion2"/>
+         </classes>
+     </test>
+ </suite>
+
+Parallel testing disadvantages:
+1. It gives a lot of load to your computer processor and the computer has to send the requests and get all the responses
+so based on this much of load the system might get confused not do it correctly.
+But still we need parallel testing so in that case we should use Selenium-Grid
+But if we do in testNG a lot of test cases will fail because of load
+
+What is thread-count="4" ? if we have 10 test cases in our class so when we make threat-count="4" that means 4 test cases will be
+executed at the same time.
+
+How to build a framework?
+1. first we need to create a package by the name of config and inside the package create a file by the name of config.properties
+inside the config.properties we put those properties like browser/ url/ username/password and so on
+2. second we need to create another package by the name of utilities or utils then inside this package we create another class
+by the name of configReader meaning we need a java class to read the data from the config.properties file.
+3. we need to create another class inside utils package by the name of CommonMethods so we can put all our pre-conditions and
+post-conditions inside CommonMethod class.
+
+
+

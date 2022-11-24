@@ -1,5 +1,6 @@
 package com.testNG.pack1;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 
@@ -7,10 +8,12 @@ public class PreConditionAndPostCondition {
 
     @BeforeClass
     public void beforeClass(){
+
         System.out.println("I am before class");
     }
     @AfterClass
     public void afterClass(){
+
         System.out.println("I am after class");
     }
 
@@ -33,6 +36,7 @@ public class PreConditionAndPostCondition {
     }
     @Test
     public void secondMethod(){
+        Assert.assertTrue(false);
 
         System.out.println("This is my second method");
     }
